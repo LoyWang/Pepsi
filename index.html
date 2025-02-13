@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Efecto Explosión</title>
+    <style>
+        /* Estilo para el contenedor principal */
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centrar contenido */
+            position: relative; /* Para posicionar elementos absolutos dentro */
+        }
+
+        /* Estilo para la imagen principal */
+        img#explosionImage {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Transición suave */
+        }
+
+        /* Estilo inicial para las letras (ocultas) */
+        .explosion-text {
+            font-size: 0;
+            opacity: 0;
+            color: #810F4B;
+            font-weight: bold;
+            transition: font-size 0.5s ease, opacity 0.5s ease;
+            position: relative; /* Asegura que las letras estén en su lugar */
+        }
+
+        /* Estilo para las nuevas imágenes que aparecen después de la explosión */
+        .new-image {
+            max-width: 100px;
+            height: auto;
+            opacity: 0;
+            position: absolute;
+            transition: opacity 0.5s ease; /* Hacer que aparezcan gradualmente */
+        }
+
+        /* Posicionamiento específico para cada imagen */
+        #image1 {
+            top: 20%;
+            left: 20%;
+        }
+
+        #image2 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #image3 {
+            bottom: 20%;
+            right: 20%;
+        }
+
+        /* Botón estilizado */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Imagen principal -->
+        <img id="explosionImage" src="Cocacolafoto.png" alt="Imagen de ejemplo">
+
+        <!-- Letras que aparecerán después de la explosión -->
+
+        <!-- Nuevas imágenes que aparecerán después de la explosión -->
+        <img id="image1" class="new-image" src="flores1.jpg" alt="Nueva imagen 1" style="display: none; border: 5px solid #DF0E89;">
+        <img id="image2" class="new-image" src="flores2.jpg" alt="Nueva imagen 2" style="display: none; border: 5px solid #14CDC2;">
+        <img id="image3" class="new-image" src="flores3.jpg" alt="Nueva imagen 3" style="display: none; border: 5px solid #EC413F;">
+
+        <!-- Botón -->
+    </div>
+    <div class="container">
+        <div id="explosionText" class="explosion-text">
+            你个单身狗，<br>
+            在这特别的时刻，我想告诉你，<br>
+            你是我生命中的一束光，<br>
+            一位真正值得信赖的朋友。<br>
+            <br>
+            感谢你一直以来的支持与陪伴，<br>
+            你的勇气和善良激励着我变得更好。<br>
+            愿你的每一天都充满欢笑、快乐和好运，<br>
+            无论风雨还是阳光，我们的友谊永远坚固！<br>
+            <br>
+            祝你幸福美满，万事如意！    <br>
+        </div>
+        <br>
+        <button onclick="explode()" style="color: greenyellow;">点击有惊喜</button>
+    </div>
+
+
+    <script>
+        function explode() {
+            const image = document.getElementById('explosionImage');
+            const text = document.getElementById('explosionText');
+            const images = document.querySelectorAll('.new-image');
+
+            // Hacer que la imagen se agrande y desaparezca
+            image.style.transform = 'scale(5)';
+            image.style.opacity = '0';
+
+            // Mostrar las letras
+            setTimeout(() => {
+                text.style.fontSize = '15px';
+                text.style.opacity = '1';
+
+                // Mostrar las nuevas imágenes después de un segundo
+                setTimeout(() => {
+                    images.forEach((img, index) => {
+                        setTimeout(() => {
+                            img.style.display = 'block'; // Mostrar la imagen
+                            img.style.opacity = '1'; // Hacerla visible gradualmente
+                        }, index * 1000); // Aparecer una tras otra con un pequeño retraso
+                    });
+                }, 1000); // Esperar medio segundo antes de mostrar las imágenes
+            }, 500); // Esperar medio segundo antes de mostrar las letras
+        }
+    </script>
+
+</body>
+</html>
